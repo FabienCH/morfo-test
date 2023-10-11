@@ -1,14 +1,10 @@
+import { PrismaSpeciesRepository } from '@/adapters/repositories/prisma-species-repository';
 import { Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { queryListSpeciesUsecase } from '@/domain/usecases/list-species';
-import { InMemorySpeciesRepository } from '@/tests/repositories/in-memory-species-repository';
 import React from 'react';
 
 export const SpeciesList = async () => {
-  const speciesRepository = new InMemorySpeciesRepository([
-    { name: 'specie name', description: 'specie description', zone: 'Amazon' },
-    { name: 'an other specie name', description: 'an other specie description', zone: 'Central Africa' },
-  ]);
-  const speciesList = await queryListSpeciesUsecase(speciesRepository);
+  const speciesList = await queryListSpeciesUsecase(new PrismaSpeciesRepository());
 
   return (
     <section className="w-full">
