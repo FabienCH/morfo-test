@@ -6,6 +6,11 @@
   "editor.formatOnSave": true,
   "explorer.autoReveal": true,
 
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+
   // Disable built-in validators and formatters (let extensions do it)
   "scss.validate": false,
   "typescript.format.enable": false,

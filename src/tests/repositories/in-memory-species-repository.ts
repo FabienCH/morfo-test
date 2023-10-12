@@ -18,6 +18,14 @@ export class InMemorySpeciesRepository implements SpeciesRepository {
     return { ...species, seedImage: 'https://placehold.co/600x400/png' };
   }
 
+  async create(speciesToAdd: SpeciesDetails): Promise<void> {
+    if (this.#species) {
+      this.#species.push(speciesToAdd);
+    } else {
+      this.#species = [speciesToAdd];
+    }
+  }
+
   withSpeciesList(): this {
     this.#species = [
       { slug: 'specie-slug', name: 'specie name', description: 'specie description', zone: 'Amazon' },

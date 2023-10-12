@@ -8,3 +8,5 @@ export interface Species {
 export interface SpeciesDetails extends Species {
   seedImage: string;
 }
+
+export type SpeciesData = Omit<SpeciesDetails, 'slug'>;
