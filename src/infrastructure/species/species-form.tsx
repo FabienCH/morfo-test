@@ -24,7 +24,6 @@ export type SpeciesFormValues = z.infer<typeof SpeciesFormSchema>;
 export const SpeciesForm = ({ onSubmit }: { onSubmit: (speciesValues: SpeciesFormValues) => void }) => {
   const {
     register,
-    watch,
     getValues,
     formState: { errors, isSubmitting },
   } = useForm<SpeciesFormValues>({
@@ -81,7 +80,6 @@ export const SpeciesForm = ({ onSubmit }: { onSubmit: (speciesValues: SpeciesFor
         />
         {errors.seedImage && <p className="text-sm text-red-600 mt-1">{errors.seedImage.message?.toString()}</p>}
       </div>
-      <pre>{JSON.stringify(watch(), null, 2)}</pre>
       <Button type="submit" disabled={isSubmitting}>
         Add species
       </Button>
