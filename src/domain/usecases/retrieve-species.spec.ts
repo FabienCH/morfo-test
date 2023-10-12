@@ -13,6 +13,7 @@ describe('Retrieve Species', () => {
   it('should give the expected species', async () => {
     const species = await querySpeciesBySlugUsecase(speciesRepository, 'specie-slug');
     expect(species).toEqual({
+      id: '0',
       slug: 'specie-slug',
       name: 'specie name',
       description: 'specie description',

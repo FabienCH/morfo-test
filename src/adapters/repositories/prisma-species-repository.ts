@@ -1,5 +1,5 @@
 import { SpeciesRepository } from '@/domain/port/repositories/species-repository';
-import { Species, SpeciesDetails } from '@/domain/species';
+import { Species, SpeciesDetails, SpeciesToCreate } from '@/domain/species';
 import { v4 as uuidv4 } from 'uuid';
 import { prisma } from '../../../prisma/prisma';
 
@@ -31,13 +31,18 @@ export class PrismaSpeciesRepository implements SpeciesRepository {
     };
   }
 
-  async create(speciesToAdd: SpeciesDetails): Promise<void> {
+  async create(speciesToAdd: SpeciesToCreate): Promise<void> {
     const data = this.#toPrismaSpecies(speciesToAdd);
     await prisma.species.create({ data });
   }
 
+  async delete(id: string): Promise<void> {
+    await prisma.species.delete({ where: { id } });
+  }
+
   #toSpecies(prismaSpecies: PrismaSpecies): Species {
     return {
+      id: prismaSpecies.id,
       slug: prismaSpecies.slug,
       name: prismaSpecies.name,
       description: prismaSpecies.description,
@@ -45,7 +50,7 @@ export class PrismaSpeciesRepository implements SpeciesRepository {
     };
   }
 
-  #toPrismaSpecies(speciesToAdd: SpeciesDetails): PrismaSpecies {
+  #toPrismaSpecies(speciesToAdd: SpeciesToCreate): PrismaSpecies {
     const { slug, name, description, zone, seedImage } = speciesToAdd;
     return { id: uuidv4(), slug, name, description, zone, seed_image: seedImage, created_at: new Date() };
   }

@@ -25,6 +25,7 @@ describe('Add Species', () => {
       seedImage: new Blob([]) as File,
     };
     const expectedSpecies = {
+      id: '0',
       name: 'new species name',
       description: 'new species description',
       zone: 'Europe',

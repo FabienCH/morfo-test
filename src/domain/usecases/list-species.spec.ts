@@ -14,8 +14,14 @@ describe('List Species', () => {
 
   it('should give a list of species', async () => {
     const expectedSpeciesList = [
-      { slug: 'specie-slug', name: 'specie name', description: 'specie description', zone: 'Amazon' },
-      { slug: 'an-other-specie-slug', name: 'an other specie name', description: 'an other specie description', zone: 'Central Africa' },
+      { id: '0', slug: 'specie-slug', name: 'specie name', description: 'specie description', zone: 'Amazon' },
+      {
+        id: '1',
+        slug: 'an-other-specie-slug',
+        name: 'an other specie name',
+        description: 'an other specie description',
+        zone: 'Central Africa',
+      },
     ];
     speciesRepository = new InMemorySpeciesRepository().withSpeciesList();
 
