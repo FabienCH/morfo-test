@@ -1,13 +1,12 @@
-import React from 'react';
-import { querySpeciesBySlugUsecase } from '@/domain/usecases/retrieve-species';
-import { notFound } from 'next/navigation';
-import { Separator } from '@/components/ui/shadcn-separator';
-import Image from 'next/image';
-import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
-import { buttonVariants } from '@/components/ui/shadcn-button';
-import { Tooltip } from '@/components/ui/tooltip';
 import { PrismaSpeciesRepository } from '@/adapters/repositories/prisma-species-repository';
+import { buttonVariants } from '@/components/ui/shadcn-button';
+import { Separator } from '@/components/ui/shadcn-separator';
+import { Tooltip } from '@/components/ui/tooltip';
+import { querySpeciesBySlugUsecase } from '@/domain/usecases/retrieve-species';
+import { ArrowLeft } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 export const ViewSpecies = async ({ slug }: { slug: string }) => {
   const species = await querySpeciesBySlugUsecase(new PrismaSpeciesRepository(), slug);

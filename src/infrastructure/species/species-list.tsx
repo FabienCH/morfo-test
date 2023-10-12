@@ -5,7 +5,6 @@ import { Tooltip } from '@/components/ui/tooltip';
 import { queryListSpeciesUsecase } from '@/domain/usecases/list-species';
 import { Eye, PlusSquare } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
 
 export const SpeciesList = async () => {
   const speciesList = await queryListSpeciesUsecase(new PrismaSpeciesRepository());
@@ -13,7 +12,7 @@ export const SpeciesList = async () => {
   return (
     <section className="w-full">
       <header className="flex justify-between items-center">
-        <h1 className="text-3xl py-4">Species list</h1>{' '}
+        <h1 className="text-3xl py-4">Species list</h1>
         <Link href="./add" className={buttonVariants({ variant: 'default' })}>
           <PlusSquare className="mr-2" /> Add species
         </Link>
