@@ -1,6 +1,10 @@
 import { PrismaSpeciesRepository } from '@/adapters/repositories/prisma-species-repository';
-import { Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { buttonVariants } from '@/components/ui/shadcn-button';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/shadcn-table';
+import { Tooltip } from '@/components/ui/tooltip';
 import { queryListSpeciesUsecase } from '@/domain/usecases/list-species';
+import { Eye } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 export const SpeciesList = async () => {
@@ -13,9 +17,10 @@ export const SpeciesList = async () => {
         <TableCaption>A list of species</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-1/4">Name</TableHead>
-            <TableHead className="w-1/4">Zone</TableHead>
+            <TableHead className="w-1/5">Name</TableHead>
+            <TableHead className="w-1/5">Zone</TableHead>
             <TableHead>Description</TableHead>
+            <TableHead className="w-22">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -24,6 +29,13 @@ export const SpeciesList = async () => {
               <TableCell>{species.name}</TableCell>
               <TableCell>{species.zone}</TableCell>
               <TableCell>{species.description}</TableCell>
+              <TableCell>
+                <Link href={`./view/${species.slug}`} className={buttonVariants({ variant: 'link' })}>
+                  <Tooltip tooltip={'View species details'}>
+                    <Eye />
+                  </Tooltip>
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

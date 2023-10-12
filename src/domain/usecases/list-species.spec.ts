@@ -14,10 +14,10 @@ describe('List Species', () => {
 
   it('should give a list of species', async () => {
     const expectedSpeciesList = [
-      { name: 'specie name', description: 'specie description', zone: 'Amazon' },
-      { name: 'an other specie name', description: 'an other specie description', zone: 'Central Africa' },
+      { slug: 'specie-slug', name: 'specie name', description: 'specie description', zone: 'Amazon' },
+      { slug: 'an-other-specie-slug', name: 'an other specie name', description: 'an other specie description', zone: 'Central Africa' },
     ];
-    speciesRepository = new InMemorySpeciesRepository(expectedSpeciesList);
+    speciesRepository = new InMemorySpeciesRepository().withSpeciesList();
 
     const speciesList = await queryListSpeciesUsecase(speciesRepository);
     expect(speciesList).toEqual(expectedSpeciesList);
